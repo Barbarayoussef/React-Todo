@@ -8,6 +8,8 @@ import NotFound from "./../src/components/NotFound/NotFound";
 import Home from "./../src/components/Home/Home";
 import UserContextProvider from "./components/Contexts/UserContext/UserContext";
 import { Toaster } from "react-hot-toast";
+import UserRoutes from "./../src/components/UserRoutes/UserRoutes";
+import GuestRoutes from "./../src/components/GuestRoutes/GuestRoutes";
 
 let routes = createBrowserRouter([
   {
@@ -16,23 +18,43 @@ let routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <UserRoutes>
+            <Home />
+          </UserRoutes>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <GuestRoutes>
+            <Login />
+          </GuestRoutes>
+        ),
       },
       {
         path: "register",
-        element: <Register />,
+        element: (
+          <GuestRoutes>
+            <Register />
+          </GuestRoutes>
+        ),
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <UserRoutes>
+            <Profile />
+          </UserRoutes>
+        ),
       },
       {
         path: "*",
-        element: <NotFound />,
+        element: (
+          <UserRoutes>
+            <NotFound />
+          </UserRoutes>
+        ),
       },
     ],
   },
