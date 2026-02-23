@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../Contexts/UserContext/UserContext";
+import { Helmet } from "react-helmet";
 
 let schema = z.object({
   email: z.string().email("Invalid email address"),
@@ -56,6 +57,10 @@ export default function Login() {
   });
   let { register, handleSubmit, formState } = loginForm;
   return (
+    <>
+     <Helmet>
+        <title>Login Page</title>
+      </Helmet>
     <form
       onSubmit={handleSubmit(doLogin)}
       className="max-w-xl mx-auto border border-default-medium rounded-base m-12 p-6 shadow-xs"
@@ -120,5 +125,6 @@ export default function Login() {
         )}
       </button>
     </form>
+    </>
   );
 }

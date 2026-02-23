@@ -1,5 +1,10 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 export default function Profile() {
-  return <div>Profile</div>;
+  return (
+    <Helmet>
+      <title>Profile</title>
+    </Helmet>
+  );
 }

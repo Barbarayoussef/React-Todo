@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 let schema = z.object({
   title: z
@@ -155,6 +156,10 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Home Page</title>
+      </Helmet>
+      ;
       <div
         tabIndex={-1}
         className={` overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full ${isOpen ? "flex" : "hidden"}`}
@@ -194,7 +199,7 @@ export default function Home() {
             </div>
             {/* Modal body */}
             <form
-             onSubmit={updateForm.handleSubmit(updateTodo)}
+              onSubmit={updateForm.handleSubmit(updateTodo)}
               className="mt-4 md:mt-6"
             >
               <div className="grid gap-4 grid-cols-2 py-4 md:py-6">
@@ -264,7 +269,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       <section className="bg-white dark:bg-gray-900 min-h-screen  ">
         <div className=" mx-auto max-w-2xl lg:py-16 border border-default-medium rounded-base m-10 p-6 shadow-xs">
           <h2 className=" text-xl font-bold text-gray-900 dark:text-white text-center">
