@@ -58,73 +58,89 @@ export default function Login() {
   let { register, handleSubmit, formState } = loginForm;
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Login Page</title>
       </Helmet>
-    <form
-      onSubmit={handleSubmit(doLogin)}
-      className="max-w-xl mx-auto border border-default-medium rounded-base m-12 p-6 shadow-xs"
-    >
-      {successMsg && (
-        <p className="text-green-500 text-sm mb-4">{successMsg}</p>
-      )}
-      {errorMsg && <p className="text-red-500 text-sm mb-4">{errorMsg}</p>}
-
-      <div className="mb-5">
-        <label
-          htmlFor="email"
-          className="block mb-2.5 text-sm font-medium text-heading"
+      <div className="min-h-screen pt-32 pb-12 px-4 bg-[#f8f9fc]">
+        <form
+          onSubmit={handleSubmit(doLogin)}
+          className="max-w-md mx-auto bg-white border border-purple-50 rounded-[2.5rem] p-10 shadow-xl shadow-purple-100/20"
         >
-          Your email
-        </label>
-        <input
-          {...register("email")}
-          type="email"
-          id="email"
-          className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-          placeholder="name@flowbite.com"
-        />
-        {formState.errors.email && (
-          <p className="text-red-500 text-sm mt-1">
-            {formState.errors.email.message}
-          </p>
-        )}
-      </div>
-      <div className="mb-5">
-        <label
-          htmlFor="password"
-          className="block mb-2.5 text-sm font-medium text-heading"
-        >
-          Your password
-        </label>
-        <input
-          {...register("password")}
-          type="password"
-          id="password"
-          className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-          placeholder="••••••••"
-        />
-        {formState.errors.password && (
-          <p className="text-red-500 text-sm mt-1">
-            {formState.errors.password.message}
-          </p>
-        )}
-      </div>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
+              Welcome Back
+            </h2>
+            <p className="text-slate-400 text-sm mt-2">
+              Enter your details to continue
+            </p>
+          </div>
 
-      <button
-        type="submit"
-        className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none w-full disabled:opacity-50 disabled:cursor-not-allowed"
-        disabled={isLoading}
-      >
-        {isLoading ? (
-          <span>
-            <i className="fa-solid fa-spinner fa-spin mr-2"></i>Logging in..
-          </span>
-        ) : (
-          "Log in"
-        )}
-      </button>
-    </form>
+          {successMsg && (
+            <div className="bg-emerald-50 text-emerald-600 p-3 rounded-xl text-xs font-bold mb-4 text-center border border-emerald-100">
+              {successMsg}
+            </div>
+          )}
+          {errorMsg && (
+            <div className="bg-rose-50 text-rose-500 p-3 rounded-xl text-xs font-bold mb-4 text-center border border-rose-100">
+              {errorMsg}
+            </div>
+          )}
+
+          <div className="mb-6">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 ml-1"
+            >
+              Email Address
+            </label>
+            <input
+              {...register("email")}
+              type="email"
+              className="w-full bg-slate-50 border border-slate-100 text-slate-700 text-sm rounded-2xl focus:ring-2 focus:ring-purple-200 focus:bg-white transition-all block px-4 py-3.5 outline-none"
+              placeholder="name@example.com"
+            />
+            {formState.errors.email && (
+              <p className="text-rose-400 text-[11px] mt-1.5 ml-1 font-medium italic">
+                {formState.errors.email.message}
+              </p>
+            )}
+          </div>
+
+          <div className="mb-8">
+            <label
+              htmlFor="password"
+              className="block mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 ml-1"
+            >
+              Password
+            </label>
+            <input
+              {...register("password")}
+              type="password"
+              className="w-full bg-slate-50 border border-slate-100 text-slate-700 text-sm rounded-2xl focus:ring-2 focus:ring-purple-200 focus:bg-white transition-all block px-4 py-3.5 outline-none"
+              placeholder="••••••••"
+            />
+            {formState.errors.password && (
+              <p className="text-rose-400 text-[11px] mt-1.5 ml-1 font-medium italic">
+                {formState.errors.password.message}
+              </p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-100 transition-all active:scale-95 disabled:opacity-50"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <span className="flex items-center justify-center gap-2">
+                <i className="fa-solid fa-circle-notch fa-spin"></i> Loading..
+              </span>
+            ) : (
+              "Sign In"
+            )}
+          </button>
+        </form>
+      </div>
     </>
   );
 }

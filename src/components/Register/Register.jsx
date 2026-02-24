@@ -71,108 +71,113 @@ export default function Register() {
     <>
       <Helmet title="Register" />
 
-      <form
-        onSubmit={handleSubmit(doRegister)}
-        className="max-w-xl mx-auto border border-default-medium rounded-base m-12 p-6 shadow-xs"
-      >
-        {successMsg && (
-          <p className="text-green-500 text-sm mb-4">{successMsg}</p>
-        )}
-        {errorMsg && <p className="text-red-500 text-sm mb-4">{errorMsg}</p>}
-        <div className="mb-5">
-          <label
-            htmlFor="name"
-            className="block mb-2.5 text-sm font-medium text-heading"
-          >
-            Your name
-          </label>
-          <input
-            {...register("name")}
-            type="name"
-            id="name"
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-          />
-          {formState.errors.name && (
-            <p className="text-red-500 text-sm mt-1">
-              {formState.errors.name.message}
-            </p>
-          )}
-        </div>
-        <div className="mb-5">
-          <label
-            htmlFor="email"
-            className="block mb-2.5 text-sm font-medium text-heading"
-          >
-            Your email
-          </label>
-          <input
-            {...register("email")}
-            type="email"
-            id="email"
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-            placeholder="name@flowbite.com"
-          />
-          {formState.errors.email && (
-            <p className="text-red-500 text-sm mt-1">
-              {formState.errors.email.message}
-            </p>
-          )}
-        </div>
-        <div className="mb-5">
-          <label
-            htmlFor="password"
-            className="block mb-2.5 text-sm font-medium text-heading"
-          >
-            Your password
-          </label>
-          <input
-            {...register("password")}
-            type="password"
-            id="password"
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-            placeholder="••••••••"
-          />
-          {formState.errors.password && (
-            <p className="text-red-500 text-sm mt-1">
-              {formState.errors.password.message}
-            </p>
-          )}
-        </div>
-        <div className="mb-5">
-          <label
-            htmlFor="confirm-password"
-            className="block mb-2.5 text-sm font-medium text-heading"
-          >
-            Confirm password
-          </label>
-          <input
-            {...register("confirmPassword")}
-            type="password"
-            id="confirm-password"
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-            placeholder="••••••••"
-          />
-          {formState.errors.confirmPassword && (
-            <p className="text-red-500 text-sm mt-1">
-              {formState.errors.confirmPassword.message}
-            </p>
-          )}
-        </div>
-
-        <button
-          type="submit"
-          className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none w-full disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={isLoading}
+      <div className="min-h-screen pt-32 pb-12 px-4 bg-[#f8f9fc]">
+        <form
+          onSubmit={handleSubmit(doRegister)}
+          className="max-w-md mx-auto bg-white border border-purple-50 rounded-[2.5rem] p-10 shadow-xl shadow-purple-100/20"
         >
-          {isLoading ? (
-            <span>
-              <i className="fa-solid fa-spinner fa-spin mr-2"></i>Registering..
-            </span>
-          ) : (
-            "Register"
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
+              Create Account
+            </h2>
+            <p className="text-slate-400 text-sm mt-2">
+              Join us and start organizing
+            </p>
+          </div>
+
+          {successMsg && (
+            <div className="bg-emerald-50 text-emerald-600 p-3 rounded-xl text-xs font-bold mb-4 text-center border border-emerald-100">
+              {successMsg}
+            </div>
           )}
-        </button>
-      </form>
+          {errorMsg && (
+            <div className="bg-rose-50 text-rose-500 p-3 rounded-xl text-xs font-bold mb-4 text-center border border-rose-100">
+              {errorMsg}
+            </div>
+          )}
+
+          <div className="space-y-5">
+            <div>
+              <label className="block mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
+                Full Name
+              </label>
+              <input
+                {...register("name")}
+                className="w-full bg-slate-50 border border-slate-100 text-slate-700 text-sm rounded-2xl focus:ring-2 focus:ring-purple-200 focus:bg-white transition-all block px-4 py-3.5 outline-none"
+                placeholder="Your Name"
+              />
+              {formState.errors.name && (
+                <p className="text-rose-400 text-[11px] mt-1.5 ml-1 italic">
+                  {formState.errors.name.message}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
+                Email
+              </label>
+              <input
+                {...register("email")}
+                type="email"
+                className="w-full bg-slate-50 border border-slate-100 text-slate-700 text-sm rounded-2xl focus:ring-2 focus:ring-purple-200 focus:bg-white transition-all block px-4 py-3.5 outline-none"
+                placeholder="name@example.com"
+              />
+              {formState.errors.email && (
+                <p className="text-rose-400 text-[11px] mt-1.5 ml-1 italic">
+                  {formState.errors.email.message}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
+                Password
+              </label>
+              <input
+                {...register("password")}
+                type="password"
+                className="w-full bg-slate-50 border border-slate-100 text-slate-700 text-sm rounded-2xl focus:ring-2 focus:ring-purple-200 focus:bg-white transition-all block px-4 py-3.5 outline-none"
+                placeholder="••••••••"
+              />
+              {formState.errors.password && (
+                <p className="text-rose-400 text-[11px] mt-1.5 ml-1 italic">
+                  {formState.errors.password.message}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block mb-2 text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
+                Confirm
+              </label>
+              <input
+                {...register("confirmPassword")}
+                type="password"
+                className="w-full bg-slate-50 border border-slate-100 text-slate-700 text-sm rounded-2xl focus:ring-2 focus:ring-purple-200 focus:bg-white transition-all block px-4 py-3.5 outline-none"
+                placeholder="••••••••"
+              />
+              {formState.errors.confirmPassword && (
+                <p className="text-rose-400 text-[11px] mt-1.5 ml-1 italic">
+                  {formState.errors.confirmPassword.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full mt-8 bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-100 transition-all active:scale-95 disabled:opacity-50"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <i className="fa-solid fa-circle-notch fa-spin mr-2"></i>
+            ) : (
+              "Create Account"
+            )}
+          </button>
+        </form>
+      </div>
     </>
   );
 }
