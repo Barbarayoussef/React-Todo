@@ -272,7 +272,7 @@ export default function Home() {
               </h3>
               <button
                 onClick={() => deleteTodo(todo._id)}
-                className="text-slate-300 hover:text-red-400 transition-colors"
+                className="text-red-400 hover:text-red-600 transition-colors"
               >
                 <i className="fa-regular fa-trash-can"></i>
               </button>

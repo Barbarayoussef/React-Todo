@@ -29,18 +29,65 @@ export default function Navbar() {
 
         <div className="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
           {token && (
-            <div className="flex items-center gap-4">
-              <span className="hidden sm:block text-xs font-semibold text-slate-400 uppercase tracking-widest">
-                {user.name}
-              </span>
+            <>
+              <button
+                type="button"
+                className="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary"
+                id="user-menu-button"
+                aria-expanded="false"
+                data-dropdown-toggle="user-dropdown"
+                data-dropdown-placement="bottom"
+              >
+                <span className="sr-only">Open user menu</span>
+
+                <i className="fa-regular fa-user text-3xl"></i>
+              </button>
+
+              <div
+                className="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+                id="user-dropdown"
+              >
+                <div className="px-4 py-3 text-sm border-b border-default">
+                  <span className="block text-heading font-medium">
+                    {user.name}
+                  </span>
+                </div>
+
+                <ul
+                  className="p-2 text-sm text-body font-medium"
+                  aria-labelledby="user-menu-button"
+                >
+                  <li>
+                    <Link
+                      to=""
+                      className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+                    >
+                      Home
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="login"
+                      className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+                      onClick={logout}
+                    >
+                      Log Out
+                    </Link>
+                  </li>
+                </ul>
+              </div>
 
               <button
-                onClick={logout}
-                className="bg-slate-100 text-slate-500 hover:bg-purple-100 hover:text-purple-600 px-4 py-2 rounded-xl text-sm font-bold transition-all"
+                data-collapse-toggle="navbar-user"
+                type="button"
+                className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+                aria-controls="navbar-user"
+                aria-expanded="false"
               >
-                Logout
+                <span className="sr-only">Open main menu</span>
               </button>
-            </div>
+            </>
           )}
 
           {/* Mobile Menu Toggle */}
@@ -113,7 +160,7 @@ export default function Navbar() {
                     className={({ isActive }) =>
                       `block py-2 px-3 transition-colors ${
                         isActive
-                          ? "text-purple-600 font-bold"
+                          ? "bg-purple-500 text-white rounded-xl font-bold"
                           : "text-slate-500 hover:text-purple-400"
                       }`
                     }
@@ -124,7 +171,13 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     to="register"
-                    className="block py-2 px-5 bg-purple-500 text-white rounded-xl font-bold hover:bg-purple-600 transition-all shadow-sm shadow-purple-100"
+                    className={({ isActive }) =>
+                      `block py-2 px-3 transition-colors  ${
+                        isActive
+                          ? "bg-purple-500 text-white rounded-xl font-bold"
+                          : "text-slate-500 hover:text-purple-400"
+                      }`
+                    }
                   >
                     Register
                   </NavLink>
